@@ -4,29 +4,61 @@ import { createAppContainer, createStackNavigator, createMaterialTopTabNavigator
 import LoginScreen from '../components/LoginScreen';
 // import MainTabNavigator from './MainTabNavigator';
 import AuthLoadingScreen from '../components/AuthLoadingScreen';
-import HomeScreen from '../components/Home';
+import HomeScreen from '../components/HomeScreen';
 import MatchHistory from '../components/MatchHistory';
+import MatchScreen from '../components/MatchScreen';
+import SignUpScreen from '../components/SignUpScreen'
 
-const AppStack = createMaterialTopTabNavigator({
-   Home: HomeScreen,
-   MatchHistory: MatchHistory
+const HomeStack = createStackNavigator({
+  HomeScreen: HomeScreen,
+  MatchScreen: MatchScreen
 },
 {
-  initialRouteName: 'Home',
-  tabBarOptions: {
-    style: {backgroundColor: 'gray'},
-    indicatorStyle: {backgroundColor: 'white'},
-    activeTintColor: 'white',
-    inactiveTintColor: 'black',
+  initialRouteName: 'HomeScreen',
+});
+
+HomeStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let swipeEnabled = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+    swipeEnabled = false;
+  }
+  return {
+    tabBarVisible,
+    swipeEnabled
+  };
+};
+
+const AppTab = createMaterialTopTabNavigator({
+    Home: HomeStack,
+    MatchHistory: MatchHistory
   },
-}
+  {
+    initialRouteName: 'Home',
+    tabBarOptions: {
+      style: {backgroundColor: 'gray'},
+      indicatorStyle: {backgroundColor: 'white'},
+      activeTintColor: 'white',
+      inactiveTintColor: 'black',
+    },
+  }
 );
-const AuthStack = createStackNavigator({ Login: LoginScreen }, {headerMode: 'none'});
+
+const AuthStack = createStackNavigator(
+  {
+    Login: LoginScreen,
+    SignUp: SignUpScreen
+  },
+  {
+    headerMode: 'none'
+  }
+);
 
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
-    App: AppStack,
+    App: AppTab,
     Auth: AuthStack,
   },
   {

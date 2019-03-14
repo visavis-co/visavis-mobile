@@ -11,7 +11,62 @@ const initialState = {
   currentMatch: {},
   pastMatches: [],
   matchChats: [],
+  chatMsg: '',
 }
+
+initialState.userInfo = {
+  id: 5,
+  fullname: "nisha"
+}
+
+initialState.matchChats = [
+  {
+    fullname: "stout",
+    match_id: 30,
+    message: "Hello Nisha!",
+    timestamp: "2019-03-12T07:47:31.807Z"
+  },
+  {
+    user_id: 5,
+    match_id: 30,
+    fullname: "nisha",
+    message: "Hello Test! When can you meet?",
+    timestamp: "2019-03-12T07:47:42.619Z"
+  }
+];
+
+initialState.pastMatches = [
+  {
+    email: 'person@test.com',
+    fullname: 'Person',
+    pictureurl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJwJtK1Cp5-WRrbYYQeB0xxRn-4uBk0ePi44ry9yjjKkh2kVZ9Dw',
+    id: 5,
+    user1_id: 5,
+    user2_id: 27,
+    inperson: false,
+    locatoin: 'Skype'
+  },
+  {
+    email: 'person@test.com',
+    fullname: 'Person2',
+    pictureurl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJwJtK1Cp5-WRrbYYQeB0xxRn-4uBk0ePi44ry9yjjKkh2kVZ9Dw',
+    id: 5,
+    user1_id: 5,
+    user2_id: 27,
+    inperson: false,
+    locatoin: 'Skype'
+  },
+  {
+    email: 'person@test.com',
+    fullname: 'Person3',
+    pictureurl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJwJtK1Cp5-WRrbYYQeB0xxRn-4uBk0ePi44ry9yjjKkh2kVZ9Dw',
+    id: 5,
+    user1_id: 5,
+    user2_id: 27,
+    inperson: false,
+    locatoin: 'Skype'
+  }
+]
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -60,6 +115,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
+      }
+      case types.UPDATE_CHAT_MSG:
+      return {
+        ...state,
+        chatMsg: action.payload,
       }
       default:
       return state;

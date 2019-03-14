@@ -1,17 +1,39 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Text, ScrollView } from 'react-native';
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
-// import { Link } from 'react-router-dom';
-// import { Button, Image, Container, Row, Col, Jumbotron } from 'react-bootstrap';
+const mapStateToProps = (store) => ({
+  // isLoggedIn: store.user.isLoggedIn,
+  userInfo: store.user.userInfo,
+  // currentMatch: store.user.currentMatch,
+  pastMatches: store.user.pastMatches,
+  // email: store.user.email,
+  // fullName: store.user.fullName,
+  // password: store.user.password,
+  matchChats: store.user.matchChats,
+  // chatMsg: store.user.chatMsg,
+});
 
-// private route
-// what a user sees when they go to "/" and are logged in
-// this month's match is...
+const mapDispatchToProps = dispatch => ({
+  // userLogin: () => { dispatch(actions.userLogin()) },
+  // userSignup: (fullName, email, password) => { dispatch(actions.userSignup(fullName, email, password)) },
+  // inSession: () => { dispatch(actions.inSession()) },
+  // enterEmail: (text) => { dispatch(actions.enterEmail(text)) },
+  // enterFullName: (event) => { dispatch(actions.enterFullName(event.target.value)) },
+  // enterPassword: (text) => { dispatch(actions.enterPassword(text)) },
+  // userLogout: (id) => { dispatch(actions.userLogout(id)) } ,
+  // updateChatMsg: (text) => { dispatch(actions.updateChatMsg(text)) },
+  // getMatchChats: (matchId) => { dispatch(actions.getChats(matchId)) },
+});
 
-class Home extends Component {
+
+class MatchHistory extends Component {
   static navigationOptions = {
     title: 'Match History',
   };
+
+
 
     
     // const assets = '/client/assets/';
@@ -27,29 +49,30 @@ class Home extends Component {
     // }
 
   render (){
-      return (<View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-        <Text>Match History</Text>
-      </View>
+
+    const pastMatches = [];
+    this.props.pastMatches.map((u,i)=>{
+      pastMatches.push(
+      <Card
+        key={i}
+        title={u.fullname}
+        image={{uri: u.pictureurl}}>
+        <Text style={{textAlign: 'center'}}>Met {(u.inperson) ? 'at' : 'via'} {u.location} on {new Date(u.dateCompleted).toDateString()}</Text>
+        <Button
+        title='Chat History'
+        />
+      </Card>
       )
-
-      // <div className="screenHome">
-      //     <Jumbotron>
-      //         <Container>
-      //             <h3>{props.userInfo.fullname}, your match for this week is...{current.fullname}</h3>
-      //                 <Image src={matchPic} className="img-fluid rounded img-thumbnail" width="40%" height="auto" alt="Match's profile pic" /><br></br>
-      //             <Button><Link to="/match" className="linkButton" >Cordinate with your match</Link></Button>
-      //         </Container>
-      //     </Jumbotron>
-
-      //     <Jumbotron>
-      //         <Container>
-      //             <h3>Past Matches</h3>
-      //             {history}
-      //         </Container>
-      //     </Jumbotron>
-      // </div>
+    })
   
+    return (
+      <ScrollView style={{flex: 1}} contentContainerStyle={{ alignItems: 'center', justifyContent: 'flex-start' }}>
+        <View>
+          {pastMatches}
+        </View>
+      </ScrollView>
+    )
   }
 }
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(MatchHistory);
