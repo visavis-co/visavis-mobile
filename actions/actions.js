@@ -36,12 +36,15 @@ export const userLogin = () => (dispatch, getState) => {
       password: getState().user.password
     })
   })
-  .then(res=>res.json())
+  .then(res=>{
+    if (res.status === 200) return res.json();
+    else throw new Error('Incorrect email/password');
+  })
   .then(data => {
     // console.log(data);
     return dispatch(logIn(data));
   })
-  .catch(err=>console.warn(err));
+  .catch(err=>console.warn(err.message));
 }
 
 export const userSignup = () => (dispatch, getState) => {
@@ -61,7 +64,7 @@ export const userSignup = () => (dispatch, getState) => {
   .then(res=>res.json())
   .then(data => {
     // console.log(data);
-    return dispatch(logIn(data));
+    dispatch(logIn(data));
   })
   .catch(err=>console.warn(err));
 
