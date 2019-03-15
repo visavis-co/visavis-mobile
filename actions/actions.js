@@ -7,7 +7,7 @@ export const logIn = (userInfo) => ({
 })
 
 export const userLogin = () => (dispatch, getState) => {
-  return fetch('http://192.168.0.149:3000/login', {
+  return fetch('http://localhost:3000/login', {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
@@ -31,7 +31,7 @@ export const userLogin = () => (dispatch, getState) => {
 }
 
 export const userSignup = () => (dispatch, getState) => {
-  return fetch('http://192.168.0.149:3000/api/user', {
+  return fetch('http://localhost:3000/api/user', {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
@@ -69,7 +69,7 @@ export const enterPassword = (value) => ({
 export const sendChatMsg = (userId, matchId, message) => (dispatch, getState) => {
   // console.log('TCL: userId, matchId, message', userId, matchId, message)
   
-  return fetch('http://192.168.0.149:3000/api/user', {
+  return fetch('http://localhost:3000/api/user', {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
