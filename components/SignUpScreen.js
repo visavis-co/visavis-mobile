@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import * as actions from '../actions/actions'
 
 const mapStateToProps = (store) => ({
   isLoggedIn: store.user.isLoggedIn,
-  // userInfo: store.user.userInfo,
-  // currentMatch: store.user.currentMatch,
-  // pastMatches: store.user.pastMatches,
   email: store.user.email,
   fullName: store.user.fullName,
-  password: store.user.password,
-  // matchChats: store.user.matchChats,
+  password: store.user.password
 });
 
 const mapDispatchToProps = dispatch => ({
-  // userLogin: () => { dispatch(actions.userLogin()) },
   userSignup: () => { dispatch(actions.userSignup()) },
-  // inSession: () => { dispatch(actions.inSession()) },
   enterEmail: (text) => { dispatch(actions.enterEmail(text)) },
   enterFullName: (text) => { dispatch(actions.enterFullName(text)) },
-  enterPassword: (text) => { dispatch(actions.enterPassword(text)) },
-  // userLogout: (id) => { dispatch(actions.userLogout(id)) } ,
-  // getMatchChats: (matchId) => { dispatch(actions.getChats(matchId)) },
+  enterPassword: (text) => { dispatch(actions.enterPassword(text)) }
 });
 
 class SignUpScreen extends Component {

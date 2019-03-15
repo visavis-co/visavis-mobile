@@ -14,6 +14,9 @@ const initialState = {
   chatMsg: '',
 }
 
+// dummy initial state for testing purposes
+
+/*
 initialState.userInfo = {
   id: 5,
   fullname: "nisha"
@@ -67,6 +70,7 @@ initialState.pastMatches = [
     locatoin: 'Skype'
   }
 ]
+*/
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {

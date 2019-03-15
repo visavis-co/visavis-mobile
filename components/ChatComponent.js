@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, View, Text, KeyboardAvoidingView } from 'react-native';
+import { View, KeyboardAvoidingView } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
 import ChatMessage from './ChatMessage'

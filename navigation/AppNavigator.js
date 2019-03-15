@@ -1,13 +1,10 @@
-import React from 'react';
-// import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createAppContainer, createStackNavigator, createMaterialTopTabNavigator, createSwitchNavigator } from 'react-navigation';
 import LoginScreen from '../components/LoginScreen';
-// import MainTabNavigator from './MainTabNavigator';
 import AuthLoadingScreen from '../components/AuthLoadingScreen';
 import HomeScreen from '../components/HomeScreen';
 import MatchHistory from '../components/MatchHistory';
 import MatchScreen from '../components/MatchScreen';
-import SignUpScreen from '../components/SignUpScreen'
+import SignUpScreen from '../components/SignUpScreen';
 
 const HomeStack = createStackNavigator({
   HomeScreen: HomeScreen,

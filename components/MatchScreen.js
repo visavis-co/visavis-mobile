@@ -6,12 +6,8 @@ import * as actions from '../actions/actions'
 import ChatComponent from './ChatComponent'
 
 const mapStateToProps = (store) => ({
-  // isLoggedIn: store.user.isLoggedIn,
   userInfo: store.user.userInfo,
   currentMatch: store.user.currentMatch,
-  // pastMatches: store.user.pastMatches,
-  // email: store.user.email,
-  // fullName: store.user.fullName,
   password: store.user.password,
   matchChats: store.user.matchChats,
   chatMsg: store.user.chatMsg,
@@ -19,14 +15,8 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = dispatch => ({
   userLogin: () => { dispatch(actions.userLogin()) },
-  // userSignup: (fullName, email, password) => { dispatch(actions.userSignup(fullName, email, password)) },
-  // inSession: () => { dispatch(actions.inSession()) },
-  // enterEmail: (text) => { dispatch(actions.enterEmail(text)) },
-  // enterFullName: (event) => { dispatch(actions.enterFullName(event.target.value)) },
-  // enterPassword: (text) => { dispatch(actions.enterPassword(text)) },
-  // userLogout: (id) => { dispatch(actions.userLogout(id)) } ,
   updateChatMsg: (text) => { dispatch(actions.updateChatMsg(text)) },
-  getMatchChats: (matchId) => { dispatch(actions.getChats(matchId)) },
+  getMatchChats: (matchId) => { dispatch(actions.getChats(matchId)) }
 });
 
 class MatchScreen extends Component {
